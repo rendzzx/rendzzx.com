@@ -3,7 +3,6 @@ import React from "react";
 import Particles from "./components/particles";
 
 const navigation = [
-  {name: "About", href: "/about"},
   {name: "Experience", href: "/experience"},
   {name: "Projects", href: "/projects"},
   {name: "Skills", href: "/skills"},
@@ -46,7 +45,10 @@ export default function Home() {
           >
             unkey.dev
           </Link>{" "} */}
-          Passionate Backend Developer | PHP, JavaScript, CodeIgniter, Laravel.
+          <Link href="/about" className="duration-500 hover:text-zinc-300">
+            Passionate Backend Developer | PHP, JavaScript, CodeIgniter,
+            Laravel.
+          </Link>
         </h2>
       </div>
     </div>
