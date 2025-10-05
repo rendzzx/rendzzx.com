@@ -124,7 +124,7 @@ export const Navigation: React.FC = () => {
               onClick={toggleLocale}
               className="mt-3 text-base font-medium duration-200 text-zinc-400 hover:text-zinc-100 text-left"
             >
-              Language: {locale === "id" ? "Indonesia" : "English"}
+              {locale === "id" ? "Bahasa: Indonesia" : "Language: English"}
             </button>
           </nav>
         </div>
