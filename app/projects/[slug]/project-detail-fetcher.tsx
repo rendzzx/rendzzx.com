@@ -3,6 +3,7 @@
 
 import React, {useEffect, useState} from "react";
 import {useI18n} from "@/app/providers/i18n-provider";
+// Ganti path ini ke lokasi Project interface Anda (asumsi di @/util/projects)
 import {Project} from "@/util/projects";
 import {ArrowLeft} from "lucide-react";
 import Link from "next/link";
@@ -25,9 +26,8 @@ export const ProjectDetailFetcher: React.FC<ProjectDetailFetcherProps> = ({
       setIsLoading(true);
       try {
         // Panggil API Route detail dengan slug dan locale
-        // Wajib: Tambahkan cache: 'no-store' untuk mengatasi masalah stale data/caching
         const response = await fetch(`/api/projects/${slug}?locale=${locale}`, {
-          cache: "no-store",
+          cache: "no-store", // Wajib: Menonaktifkan cache browser
         });
 
         if (!response.ok) {

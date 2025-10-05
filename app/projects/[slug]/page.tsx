@@ -3,18 +3,15 @@ import {Navigation} from "@/app/components/nav";
 import {getSortedProjectsData, Project} from "@/util/projects";
 import {ProjectDetailFetcher} from "./project-detail-fetcher"; // Import Client Fetcher
 
-// app/projects/[slug]/page.tsx (Fungsi generateStaticParams)
-
+// generateStaticParams tetap sama (memperbaiki error syntax spread)
 export async function generateStaticParams() {
   const idProjects = await getSortedProjectsData("id");
   const enProjects = await getSortedProjectsData("en");
 
-  // Perbaikan: Gabungkan array map sebelum membuat Set.
-  // Kemudian gunakan Array.from(Set) untuk memastikan kompatibilitas.
   const allSlugs = Array.from(
     new Set([
-      ...idProjects.map((p) => p.slug), // Menggunakan spread operator pada hasil map (array)
-      ...enProjects.map((p) => p.slug), // Menggunakan spread operator pada hasil map (array)
+      ...idProjects.map((p) => p.slug),
+      ...enProjects.map((p) => p.slug),
     ])
   );
 
@@ -23,7 +20,7 @@ export async function generateStaticParams() {
   }));
 }
 
-// Server Component: Fokus hanya pada struktur halaman dan Navigation
+// Server Component: Meneruskan slug ke Client Fetcher
 export default async function ProjectDetailPage({
   params,
 }: {
@@ -34,7 +31,6 @@ export default async function ProjectDetailPage({
       <Navigation />
 
       {/* Meneruskan slug ke Client Fetcher */}
-      {/* Client Fetcher akan mengambil data berdasarkan slug dan LOCALE AKTIF */}
       <ProjectDetailFetcher slug={params.slug} />
     </div>
   );

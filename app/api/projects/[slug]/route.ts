@@ -1,9 +1,8 @@
 // app/api/projects/[slug]/route.ts
 import {NextResponse} from "next/server";
-import {getSortedProjectsData} from "@/util/projects";
-import {Project} from "@/util/projects"; // Import Project Interface
+import {getSortedProjectsData, Project} from "@/util/projects";
 
-// Secara eksplisit memaksa rute ini untuk dinamis (tidak di-cache)
+// Memaksa rute ini untuk selalu dinamis (tidak di-cache)
 export const dynamic = "force-dynamic";
 
 // Helper function untuk mendapatkan satu proyek berdasarkan slug
@@ -30,6 +29,7 @@ export async function GET(
       return NextResponse.json({message: "Project not found"}, {status: 404});
     }
 
+    // NextResponse.json akan menangani pengembalian data
     return NextResponse.json(project);
   } catch (error) {
     console.error(`Error fetching project detail (${slug}):`, error);
