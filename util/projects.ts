@@ -17,13 +17,25 @@ export interface Project {
   contentHtml: string;
 }
 
-const projectsDirectory = path.join(process.cwd(), "content", "projects");
+const contentDirectory = path.join(process.cwd(), "content", "projects");
 
 /**
  * Mengambil dan memproses semua file Markdown proyek.
  */
-export async function getSortedProjectsData(): Promise<Project[]> {
+export async function getSortedProjectsData(
+  locale: string = "id"
+): Promise<Project[]> {
   // Ambil semua nama file dari direktori /content/projects
+  const projectsDirectory = path.join(contentDirectory, locale);
+
+  // Pastikan direktori ada
+  if (!fs.existsSync(projectsDirectory)) {
+    console.warn(
+      `Project directory not found for locale: ${locale}. Falling back to default.`
+    );
+    // Opsi: Fallback ke 'id' jika locale spesifik tidak ditemukan
+    return [];
+  }
   const fileNames = fs.readdirSync(projectsDirectory);
 
   const allProjectsData = fileNames.map((fileName) => {

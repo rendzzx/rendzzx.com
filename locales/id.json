@@ -48,5 +48,10 @@
     "details_git": "Git / GitHub / GitLab, Docker (Basic)",
     "title_soft_skills": "Soft Skills",
     "details_soft_skills": "Problem-solving, Kolaborasi, Manajemen Waktu"
+  },
+  "projects_page": {
+    "view_details": "Lihat Detail",
+    "back_to_projects": "kembali ke list proyek",
+    "visit_project_link": "kunjungi link proyek"
   }
 }
