@@ -2,6 +2,7 @@ import "../global.css";
 import {Inter} from "@next/font/google";
 import LocalFont from "@next/font/local";
 import {Metadata} from "next";
+import {I18nProvider} from "./providers/i18n-provider";
 
 export const metadata: Metadata = {
   title: {
@@ -62,7 +63,10 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           process.env.NODE_ENV === "development" ? "debug-screens" : undefined
         }`}
       >
-        {children}
+        <I18nProvider>
+          {/* BUNGKUS SELURUH APLIKASI */}
+          {children}
+        </I18nProvider>
       </body>
     </html>
   );

@@ -1,0 +1,52 @@
+{
+  "navigation": {
+    "about": "About",
+    "experience": "Experience",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "about_page": {
+    "header": "About me",
+    "contact_me": "Contact Me",
+    "download_cv": "Download CV",
+    "stats_experience": "Years of Experience",
+    "stats_projects": "Projects Completed",
+    "stats_languages": "Core Languages",
+    "narrative": "Hello! I am **Muhammad Rendy Maulana**, a passionate Backend Developer with **6+ years** of intensive experience in building robust and impactful software solutions. I am proficient in the **PHP** and **JavaScript** ecosystems, always ready to face new technical challenges, and team-oriented.\n\nMy core expertise lies in web application development, designing and managing **RESTful APIs**, and system optimization. I have deep experience with modern frameworks such as **Laravel**, **CodeIgniter**, and **ExpressJS**. I have successfully led important projects, such as automating the promotion workflow in the Ministry of Trade's Helpdesk, and managing **SQL Server** and **MySQL** databases.\n\nCurrently, I am expanding my cross-platform capabilities by learning **Flutter** and **Golang**. With a strong foundation in **Problem-solving**, **Collaboration**, and **Time Management**, I am committed to providing strategic guidance and solutions that are carefully designed, tested, and optimized for every project."
+  },
+  "experience_page": {
+    "header": "My Experience",
+    "role_job2": "IT Consultant",
+    "company_job2": "Ministry of Trade of the Republic of Indonesia",
+    "duration_job2": "Sep 2023 - Present",
+    "desc_job2": "Responsible for developing internal service systems for the Helpdesk module, including handling pension applications based on rank and position. Automated the Helpdesk promotion workflow by triggering submissions once all eligibility criteria were fulfilled. Provided guidance, strategic solutions, and ensured the smooth design, implementation, and optimization of applications.",
+    "role_job1": "Software Programmer",
+    "company_job1": "PT IFCA Property 365 Indonesia",
+    "duration_job1": "Jul 2019 - Jul 2021",
+    "desc_job1": "Developed, tested, and optimized property web applications. Created and managed **RESTful APIs** to connect various services and ensure seamless data flow between systems. Involved in developing HR modules (**leave**, **payroll**, **payslips**) using React Native and MS SQL Server to improve data accuracy and simplify HR workflows."
+  },
+  "skills_page": {
+    "header": "My Skills",
+    "cat_backend_lang": "Backend & Languages",
+    "cat_frontend_mobile": "Frontend & Mobile",
+    "cat_database_tools": "Database & Tools",
+    "cat_soft_skills": "Soft Skills",
+    "title_backend_dev": "Backend Development",
+    "details_php_js": "PHP, JavaScript (Node.js)",
+    "details_api_auth": "RESTful API Design, Authentication (JWT)",
+    "title_frameworks": "Frameworks & Libraries",
+    "details_laravel": "Laravel, CodeIgniter, ExpressJS",
+    "details_learning": "Learning Golang & Flutter",
+    "title_frontend_mobile": "Frontend & Mobile",
+    "details_react_next": "ReactJS, React Native",
+    "details_styling_ui": "Styling & UI",
+    "details_tailwind": "Tailwind CSS, Bootstrap",
+    "title_database": "Database Management",
+    "details_sql": "MySQL, MS SQL Server, Query Optimization",
+    "title_dev_tools": "Development Tools",
+    "details_git": "Git / GitHub / GitLab, Docker (Basic)",
+    "title_soft_skills": "Soft Skills",
+    "details_soft_skills": "Problem-solving, Collaboration, Time Management"
+  }
+}

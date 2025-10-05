@@ -1,0 +1,52 @@
+{
+  "navigation": {
+    "about": "Tentang",
+    "experience": "Pengalaman",
+    "skills": "Keahlian",
+    "projects": "Proyek",
+    "contact": "Kontak"
+  },
+  "about_page": {
+    "header": "Tentang Saya",
+    "contact_me": "Hubungi Saya",
+    "download_cv": "Unduh CV",
+    "stats_experience": "Tahun Pengalaman",
+    "stats_projects": "Proyek Selesai",
+    "stats_languages": "Bahasa Inti",
+    "narrative": "Halo! Saya **Muhammad Rendy Maulana**, seorang Backend Developer yang bersemangat dengan pengalaman **6+ tahun** dalam membangun solusi perangkat lunak yang kuat dan berdampak. Saya mahir dalam ekosistem **PHP** dan **JavaScript**, selalu siap menghadapi tantangan teknis baru, dan berorientasi pada tim.\n\nKeahlian inti saya terletak pada pengembangan aplikasi web, perancangan dan pengelolaan **RESTful API**, serta optimasi sistem. Saya memiliki pengalaman mendalam dengan *framework* modern seperti **Laravel**, **CodeIgniter**, dan **ExpressJS**. Saya telah berhasil memimpin proyek-proyek penting, seperti otomatisasi alur kerja promosi di Helpdesk Kementerian Perdagangan, dan mengelola *database* **SQL Server** serta **MySQL**.\n\nSaat ini, saya sedang mengembangkan kemampuan *cross-platform* dengan mempelajari **Flutter** dan **Golang**. Dengan fondasi yang kuat dalam **Problem-solving**, **Collaboration**, dan **Time Management**, saya berkomitmen untuk memberikan panduan strategis dan solusi yang dirancang, diuji, dan dioptimalkan dengan cermat untuk setiap proyek."
+  },
+  "experience_page": {
+    "header": "Pengalaman Saya",
+    "role_job2": "Konsultan IT",
+    "company_job2": "Kementerian Perdagangan Republik Indonesia",
+    "duration_job2": "Sep 2023 - Sekarang",
+    "desc_job2": "Bertanggung jawab dalam pengembangan sistem layanan internal untuk modul Helpdesk, termasuk penanganan aplikasi pensiun berdasarkan pangkat dan jabatan. Mengotomatiskan alur kerja promosi Helpdesk dengan memicu pengajuan setelah semua kriteria kelayakan terpenuhi. Memberikan panduan, solusi strategis, serta memastikan desain, implementasi, dan optimasi aplikasi berjalan lancar.",
+    "role_job1": "Programmer Perangkat Lunak",
+    "company_job1": "PT IFCA Property 365 Indonesia",
+    "duration_job1": "Jul 2019 - Jul 2021",
+    "desc_job1": "Mengembangkan, menguji, dan mengoptimalkan aplikasi web properti. Menciptakan dan mengelola **RESTful API** untuk menghubungkan berbagai layanan dan memastikan aliran data yang mulus antara sistem. Terlibat dalam pengembangan modul HR (**cuti**, **payroll**, **slip gaji**) menggunakan React Native dan MS SQL Server untuk meningkatkan akurasi data dan menyederhanakan alur kerja HR."
+  },
+  "skills_page": {
+    "header": "Keahlian Saya",
+    "cat_backend_lang": "Backend & Bahasa",
+    "cat_frontend_mobile": "Frontend & Mobile",
+    "cat_database_tools": "Database & Tools",
+    "cat_soft_skills": "Soft Skills",
+    "title_backend_dev": "Pengembangan Backend",
+    "details_php_js": "PHP, JavaScript (Node.js)",
+    "details_api_auth": "Perancangan RESTful API, Autentikasi (JWT)",
+    "title_frameworks": "Frameworks & Libraries",
+    "details_laravel": "Laravel, CodeIgniter, ExpressJS",
+    "details_learning": "Sedang belajar Golang & Flutter",
+    "title_frontend_mobile": "Frontend & Mobile",
+    "details_react_next": "ReactJS, React Native",
+    "details_styling_ui": "Styling & UI",
+    "details_tailwind": "Tailwind CSS, Bootstrap",
+    "title_database": "Database Management",
+    "details_sql": "MySQL, MS SQL Server, Optimasi Query",
+    "title_dev_tools": "Development Tools",
+    "details_git": "Git / GitHub / GitLab, Docker (Basic)",
+    "title_soft_skills": "Soft Skills",
+    "details_soft_skills": "Problem-solving, Kolaborasi, Manajemen Waktu"
+  }
+}
