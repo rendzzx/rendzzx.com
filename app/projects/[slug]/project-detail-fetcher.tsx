@@ -2,37 +2,40 @@
 "use client";
 
 import React, {useEffect, useState} from "react";
-import {ArrowLeft} from "lucide-react";
-import Link from "next/link";
 import {useI18n} from "@/app/providers/i18n-provider";
 import {Project} from "@/util/projects";
-import {ProjectDetailClientWrapper} from "./project-detail-client-wrapper"; // Wrapper untuk rendering
+import {ArrowLeft} from "lucide-react";
+import Link from "next/link";
 
 interface ProjectDetailFetcherProps {
-  slug: string; // Terima slug sebagai prop dari Server Component
+  slug: string;
 }
 
 export const ProjectDetailFetcher: React.FC<ProjectDetailFetcherProps> = ({
   slug,
 }) => {
-  const {locale, t} = useI18n(); // Ambil locale untuk fetching
+  // Ambil locale dan fungsi terjemahan dari context
+  const {locale, t} = useI18n();
+
   const [project, setProject] = useState<Project | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Memastikan data diambil ulang setiap kali locale atau slug berubah
   useEffect(() => {
     async function fetchProjectData() {
       setIsLoading(true);
       try {
-        // Panggil API Route untuk mendapatkan data berdasarkan slug dan locale
-        const response = await fetch(`/api/projects/${slug}?locale=${locale}`);
+        // Panggil API Route detail dengan slug dan locale
+        // Wajib: Tambahkan cache: 'no-store' untuk mengatasi masalah stale data/caching
+        const response = await fetch(`/api/projects/${slug}?locale=${locale}`, {
+          cache: "no-store",
+        });
 
         if (!response.ok) {
           setProject(null);
           return;
         }
         const data = await response.json();
-        setProject(data);
+        setProject(data as Project);
       } catch (error) {
         console.error(
           `Failed to fetch project data for ${slug} (${locale}):`,
@@ -44,13 +47,12 @@ export const ProjectDetailFetcher: React.FC<ProjectDetailFetcherProps> = ({
       }
     }
     fetchProjectData();
-  }, [slug, locale]); // DEPENDENSI: Ambil ulang data ketika locale atau slug berubah
+  }, [slug, locale]); // DEPENDENSI: Ambil ulang data ketika locale berubah
 
   if (isLoading) {
-    // Teks loading ini juga harus diterjemahkan, tetapi kita gunakan teks statis dulu
     return (
       <div className="container mx-auto px-4 pt-32 pb-20 max-w-4xl text-zinc-500">
-        <p>{t("projects_page", "loading_data")}...</p>
+        <p>Loading project details...</p>
       </div>
     );
   }
@@ -58,11 +60,52 @@ export const ProjectDetailFetcher: React.FC<ProjectDetailFetcherProps> = ({
   if (!project) {
     return (
       <div className="container mx-auto px-4 pt-32 pb-20 max-w-4xl text-white">
-        Project not found.
+        Project not found in this language.
       </div>
     );
   }
 
-  // Gunakan wrapper client untuk merender (kita tidak perlu lagi useI18n di wrapper ini)
-  return <ProjectDetailClientWrapper project={project} />;
+  // --- Render Konten Detail Proyek ---
+  return (
+    <div className="container mx-auto px-4 pt-32 pb-20 max-w-4xl">
+      {/* Tombol Kembali (Teks terjemahan) */}
+      <Link
+        href="/projects"
+        className="text-zinc-400 hover:text-zinc-100 flex items-center gap-2 mb-8"
+      >
+        <ArrowLeft className="w-4 h-4" />{" "}
+        {t("projects_page", "back_to_projects")}
+      </Link>
+
+      {/* Header Proyek (Data dinamis dari Markdown) */}
+      <header className="mb-10 border-b border-zinc-800 pb-6">
+        <h1 className="text-4xl md:text-5xl font-display text-white mb-2">
+          {project.title}
+        </h1>
+        <div className="text-sm text-zinc-500">
+          <span>{project.year}</span> | <span>Stack: {project.stack}</span>
+        </div>
+      </header>
+
+      {/* Konten Markdown yang sudah di-render ke HTML */}
+      <div
+        className="prose prose-invert prose-p:text-zinc-400 prose-headings:text-white prose-a:text-orange-500"
+        dangerouslySetInnerHTML={{__html: project.contentHtml}}
+      />
+
+      {/* Link URL Proyek (Teks terjemahan) */}
+      {project.url && (
+        <div className="mt-10 pt-6 border-t border-zinc-800">
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-orange-500 hover:underline"
+          >
+            {t("projects_page", "visit_project_link")} &rarr;
+          </a>
+        </div>
+      )}
+    </div>
+  );
 };

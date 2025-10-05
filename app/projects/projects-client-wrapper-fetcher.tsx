@@ -3,7 +3,7 @@
 
 import React, {useEffect, useState, useMemo} from "react";
 import {useI18n} from "../providers/i18n-provider";
-import {Project, getSortedProjectsData} from "@/util/projects";
+import {Project} from "@/util/projects"; // Asumsi interface Project di-import dari sini
 import Link from "next/link";
 import {Card} from "@/app/components/card";
 import {ArrowRight} from "lucide-react";
@@ -35,7 +35,12 @@ export const ProjectsClientWrapperFetcher: React.FC<
         // SOLUSI SEMENTARA: Panggil fungsi fiktif di sisi client, yang akan kita perbaiki nanti
         // Agar aman dari error, kita anggap fungsi fetchProjectsData ada di /api
 
-        const response = await fetch(`/api/projects?locale=${locale}`);
+        // const response = await fetch(`/api/projects?locale=${locale}`);
+        const response = await fetch(`/api/projects?locale=${locale}`, {
+          // PARAMETER BARU UNTUK MEMAKSA NON-CACHING
+          cache: "no-store", // Next.js standard for disabling cache
+          // Optional: headers: { 'Cache-Control': 'no-cache' }
+        });
         const data = await response.json();
         setProjects(data);
       } catch (error) {

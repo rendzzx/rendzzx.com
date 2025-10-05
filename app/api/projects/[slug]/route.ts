@@ -1,12 +1,16 @@
 // app/api/projects/[slug]/route.ts
 import {NextResponse} from "next/server";
-import {getSortedProjectsData} from "@/util/projects"; // Import utilitas fetching Anda
+import {getSortedProjectsData} from "@/util/projects";
+import {Project} from "@/util/projects"; // Import Project Interface
 
-// Fungsi helper untuk mendapatkan satu proyek dari semua proyek yang ada
+// Secara eksplisit memaksa rute ini untuk dinamis (tidak di-cache)
+export const dynamic = "force-dynamic";
+
+// Helper function untuk mendapatkan satu proyek berdasarkan slug
 async function getProjectBySlug(
   slug: string,
   locale: string
-): Promise<any | undefined> {
+): Promise<Project | undefined> {
   const projects = await getSortedProjectsData(locale);
   return projects.find((p) => p.slug === slug);
 }
