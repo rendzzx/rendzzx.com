@@ -1,7 +1,13 @@
 // app/providers/i18n-provider.tsx
 "use client";
 
-import React, {createContext, useContext, useState, useMemo} from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useMemo,
+  useEffect,
+} from "react";
 // Import JSON lokal
 import id from "@/locales/id.json";
 import en from "@/locales/en.json";
@@ -24,7 +30,19 @@ const loadTranslations = (locale: Locale): Translations => {
 
 export const I18nProvider: React.FC<React.PropsWithChildren> = ({children}) => {
   // State default bahasa
-  const [locale, setLocale] = useState<Locale>("en");
+  const [locale, setLocaleState] = useState<Locale>("en");
+
+  useEffect(() => {
+    const savedLocale = localStorage.getItem("locale");
+    if (savedLocale && (savedLocale === "id" || savedLocale === "en")) {
+      setLocaleState(savedLocale as Locale);
+    }
+  }, []);
+
+  const setLocale = (newLocale: Locale) => {
+    localStorage.setItem("locale", newLocale);
+    setLocaleState(newLocale);
+  };
 
   const translations = useMemo(() => loadTranslations(locale), [locale]);
 
