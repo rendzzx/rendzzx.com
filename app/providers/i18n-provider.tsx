@@ -24,7 +24,7 @@ const loadTranslations = (locale: Locale): Translations => {
 
 export const I18nProvider: React.FC<React.PropsWithChildren> = ({children}) => {
   // State default bahasa
-  const [locale, setLocale] = useState<Locale>("id");
+  const [locale, setLocale] = useState<Locale>("en");
 
   const translations = useMemo(() => loadTranslations(locale), [locale]);
 
