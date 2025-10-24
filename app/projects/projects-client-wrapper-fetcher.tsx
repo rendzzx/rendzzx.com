@@ -107,9 +107,9 @@ export const ProjectsClientWrapperFetcher: React.FC<
                       {project.description}
                     </p>
                   </div>
-                  <div className="flex justify-between items-center text-xs text-zinc-500 pt-4 border-t border-zinc-800">
+                  <div className="flex justify-between items-center text-xs text-zinc-500 pt-4 border-t border-zinc-800 gap-4">
                     <span>{project.year}</span>
-                    <span className="text-orange-500">{project.stack}</span>
+                    <span className="text-orange-500 text-right">{project.stack}</span>
                   </div>
                 </article>
               </Link>
