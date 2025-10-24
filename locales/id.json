@@ -52,6 +52,7 @@
   "projects_page": {
     "view_details": "Lihat Detail",
     "back_to_projects": "kembali ke list proyek",
-    "visit_project_link": "kunjungi link proyek"
+    "visit_project_link": "kunjungi link proyek",
+    "loading_project": "Memuat proyek..."
   }
 }

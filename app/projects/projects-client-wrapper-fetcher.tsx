@@ -56,7 +56,11 @@ export const ProjectsClientWrapperFetcher: React.FC<
   const latestProjects = projects.filter((p) => p.slug !== featured?.slug);
 
   if (isLoading) {
-    return <div className="text-zinc-500 mt-10">Loading projects...</div>;
+    return (
+      <div className="text-zinc-500 mt-10">
+        {t("projects_page", "loading_project")}
+      </div>
+    );
   }
 
   if (projects.length === 0) {
