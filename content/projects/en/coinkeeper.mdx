@@ -1,0 +1,96 @@
+---
+title: "CoinKeeper — Personal Finance Management App"
+description: "A smart and secure personal finance app to track income, expenses, and savings with an intuitive dashboard."
+slug: "/projects/coinkeeper"
+thumbnail: "/images/projects/coinkeeper-banner.png"
+tech:
+  - Next.js
+  - TypeScript
+  - Tailwind CSS
+  - IndexedDB
+  - Framer Motion
+links:
+  github: "https://github.com/rendzzx/coinkeeper"
+  live: "https://coinkeeper.rendzzx.com"
+---
+
+# CoinKeeper
+
+> A modern personal finance management app that helps users take control of their money. Built with a focus on security, simplicity, and seamless user experience.
+
+---
+
+## 💡 Overview
+
+CoinKeeper is a web-based personal finance manager that allows users to record, categorize, and visualize their financial activities — from daily expenses to long-term savings. The app is designed to help users understand their spending habits and achieve better financial control.
+
+---
+
+## ✨ Key Features
+
+- **Smart Dashboard** — View income, expenses, and balance in one place.
+- **Offline Support** — Uses IndexedDB for local storage and data sync.
+- **Transaction Categorization** — Organize spending with custom tags and categories.
+- **Encryption Layer** — Local encryption for sensitive financial data.
+- **Dark/Light Mode** — Theme adjusts automatically to system preference.
+- **Drag & Drop Dashboard Cards** — Customize card order using an intuitive UI.
+
+---
+
+## 🧩 Tech Stack
+
+| Technology                  | Purpose                              |
+| --------------------------- | ------------------------------------ |
+| **Next.js 15 (App Router)** | Core web framework                   |
+| **TypeScript**              | Type safety and scalability          |
+| **Tailwind CSS**            | UI styling and responsive layout     |
+| **Framer Motion**           | Smooth animations and transitions    |
+| **IndexedDB**               | Offline-first local data storage     |
+| **SweetAlert2**             | Elegant modals and validation alerts |
+
+---
+
+## 🧠 Architecture & Features
+
+The app follows a modular architecture with feature-based components:
+
+- `src/app/dashboard/` — Main dashboard with analytics cards.
+- `src/context/WalletContext.tsx` — Global context for wallet state.
+- `src/lib/encryption.ts` — AES-based data encryption/decryption logic.
+- `src/lib/indexedDB.ts` — Handles data storage, versioning, and schema.
+
+---
+
+## 📸 Screenshots
+
+![CoinKeeper Dashboard](/images/projects/coinkeeper-dashboard.png)
+![Transaction List](/images/projects/coinkeeper-transactions.png)
+
+---
+
+## 🚀 Challenges & Learnings
+
+- Implemented **IndexedDB transactions** safely with fallbacks for schema upgrades.
+- Learned the importance of **encryption performance trade-offs** on large datasets.
+- Improved UI/UX consistency across devices using **responsive grid and motion layouts**.
+- Deployed on **Vercel** with optimized image handling and dynamic metadata.
+
+---
+
+## 🧭 Future Plans
+
+1. Multi-account and multi-currency support.
+2. Integration with banking APIs.
+3. Expense prediction using machine learning.
+4. Export reports in PDF and Excel formats.
+
+---
+
+## 🔗 Links
+
+- **Live Demo:** [coinkeeper.rendzzx.com](https://coinkeeper.rendzzx.com)
+- **Source Code:** [github.com/rendzzx/coinkeeper](https://github.com/rendzzx/coinkeeper)
+
+---
+
+_Created by [Rendy Maulana](https://rendzzx.com) — designed for simplicity, privacy, and control._

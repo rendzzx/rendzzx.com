@@ -1,0 +1,96 @@
+---
+title: "CoinKeeper — Aplikasi Manajemen Keuangan Pribadi"
+description: "Aplikasi pintar dan aman untuk mencatat pemasukan, pengeluaran, serta tabungan dengan dashboard yang intuitif."
+slug: "/projects/coinkeeper"
+thumbnail: "/images/projects/coinkeeper-banner.png"
+tech:
+  - Next.js
+  - TypeScript
+  - Tailwind CSS
+  - IndexedDB
+  - Framer Motion
+links:
+  github: "https://github.com/rendzzx/coinkeeper"
+  live: "https://coinkeeper.rendzzx.com"
+---
+
+# CoinKeeper
+
+> Aplikasi manajemen keuangan pribadi modern yang membantu pengguna mengontrol keuangannya dengan mudah. Dibangun dengan fokus pada keamanan, kesederhanaan, dan pengalaman pengguna yang halus.
+
+---
+
+## 💡 Gambaran Umum
+
+CoinKeeper adalah aplikasi berbasis web untuk membantu pengguna mencatat, mengelompokkan, dan memvisualisasikan aktivitas keuangan mereka — mulai dari pengeluaran harian hingga perencanaan tabungan jangka panjang. Aplikasi ini dirancang agar pengguna dapat memahami pola pengeluaran mereka dan mengelola keuangan dengan lebih bijak.
+
+---
+
+## ✨ Fitur Utama
+
+- **Dashboard Pintar** — Lihat pemasukan, pengeluaran, dan saldo dalam satu tampilan.
+- **Dukungan Offline** — Menggunakan IndexedDB untuk penyimpanan dan sinkronisasi data lokal.
+- **Kategorisasi Transaksi** — Kelompokkan transaksi dengan tag dan kategori kustom.
+- **Lapisan Enkripsi** — Data keuangan sensitif terenkripsi secara lokal.
+- **Mode Gelap/Terang** — Tema mengikuti preferensi sistem secara otomatis.
+- **Dashboard yang Dapat Disusun** — Urutan kartu dapat diatur secara drag & drop dengan antarmuka yang intuitif.
+
+---
+
+## 🧩 Teknologi yang Digunakan
+
+| Teknologi                   | Fungsi                                         |
+| --------------------------- | ---------------------------------------------- |
+| **Next.js 15 (App Router)** | Framework utama aplikasi                       |
+| **TypeScript**              | Menjamin keamanan tipe data dan skalabilitas   |
+| **Tailwind CSS**            | Styling responsif dan cepat                    |
+| **Framer Motion**           | Animasi dan transisi yang halus                |
+| **IndexedDB**               | Penyimpanan data lokal dengan dukungan offline |
+| **SweetAlert2**             | Popup dan validasi interaktif yang elegan      |
+
+---
+
+## 🧠 Arsitektur & Struktur Proyek
+
+Aplikasi ini menggunakan arsitektur modular dengan struktur berbasis fitur:
+
+- `src/app/dashboard/` — Dashboard utama dengan kartu analitik.
+- `src/context/WalletContext.tsx` — Context global untuk data dompet dan transaksi.
+- `src/lib/encryption.ts` — Logika enkripsi/dekripsi berbasis AES.
+- `src/lib/indexedDB.ts` — Mengatur penyimpanan data, versi, dan skema IndexedDB.
+
+---
+
+## 📸 Tangkapan Layar
+
+![Dashboard CoinKeeper](/images/projects/coinkeeper-dashboard.png)
+![Daftar Transaksi](/images/projects/coinkeeper-transactions.png)
+
+---
+
+## 🚀 Tantangan & Pembelajaran
+
+- Menerapkan **IndexedDB transactions** dengan aman dan kompatibel untuk pembaruan skema.
+- Memahami **kompromi performa enkripsi** pada dataset yang besar.
+- Menyempurnakan konsistensi UI/UX di berbagai perangkat dengan **grid responsif dan animasi halus**.
+- Deploy ke **Vercel** dengan optimasi gambar dan metadata dinamis.
+
+---
+
+## 🧭 Rencana Pengembangan Selanjutnya
+
+1. Dukungan multi-akun dan multi-mata uang.
+2. Integrasi dengan API perbankan.
+3. Prediksi pengeluaran dengan bantuan machine learning.
+4. Ekspor laporan dalam format PDF dan Excel.
+
+---
+
+## 🔗 Tautan
+
+- **Demo Langsung:** [coinkeeper.rendzzx.com](https://coinkeeper.rendzzx.com)
+- **Kode Sumber:** [github.com/rendzzx/coinkeeper](https://github.com/rendzzx/coinkeeper)
+
+---
+
+_Dibuat oleh [Rendy Maulana](https://rendzzx.com) — dirancang untuk kesederhanaan, privasi, dan kendali penuh atas keuangan pribadi._
