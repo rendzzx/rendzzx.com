@@ -1,0 +1,34 @@
+export const siteConfig = {
+  name: "Rendy Maulana",
+  brand: "Rendzzx",
+  handle: "rendzzx",
+  url: "https://rendzzx.com",
+  title: "Rendy Maulana — Backend Developer",
+  titleTemplate: "%s | rendzzx.com",
+  description:
+    "Portfolio of Muhammad Rendy Maulana, a passionate Backend Developer with 5+ years of experience in PHP and JavaScript, building robust web applications and RESTful APIs.",
+  email: "rendzzx@hotmail.com",
+  ogImage: "https://rendzzx.com/og-upscale.png",
+  profileImage: "https://rendzzx.com/me.png",
+  keywords: [
+    "Backend Developer",
+    "PHP",
+    "Laravel",
+    "CodeIgniter",
+    "JavaScript",
+    "REST API",
+    "Rendy Maulana",
+    "rendzzx",
+  ],
+  socials: {
+    github: "https://github.com/rendzzx",
+    linkedin: "https://www.linkedin.com/in/rendzzx/",
+  },
+  nav: [
+    {id: "experience", href: "/experience"},
+    {id: "projects", href: "/projects"},
+    {id: "skills", href: "/skills"},
+    {id: "contact", href: "/contact"},
+    {id: "about", href: "/about"},
+  ] as const,
+};

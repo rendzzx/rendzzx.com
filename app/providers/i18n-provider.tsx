@@ -1,4 +1,3 @@
-// app/providers/i18n-provider.tsx
 "use client";
 
 import React, {
@@ -7,37 +6,40 @@ import React, {
   useState,
   useMemo,
   useEffect,
+  useCallback,
 } from "react";
-// Import JSON lokal
 import id from "@/locales/id.json";
 import en from "@/locales/en.json";
 
 type Locale = "id" | "en";
 type Translations = typeof id;
+type MainKey = keyof Translations;
 
 interface I18nContextType {
   locale: Locale;
   setLocale: (locale: Locale) => void;
-  t: (key: keyof Translations, subKey: string) => string;
+  t: <K extends MainKey>(key: K, subKey: keyof Translations[K]) => string;
 }
 
 const I18nContext = createContext<I18nContextType | undefined>(undefined);
 
-// Fungsi utilitas untuk memuat terjemahan
 const loadTranslations = (locale: Locale): Translations => {
   return locale === "id" ? id : en;
 };
 
 export const I18nProvider: React.FC<React.PropsWithChildren> = ({children}) => {
-  // State default bahasa
   const [locale, setLocaleState] = useState<Locale>("en");
 
   useEffect(() => {
     const savedLocale = localStorage.getItem("locale");
-    if (savedLocale && (savedLocale === "id" || savedLocale === "en")) {
-      setLocaleState(savedLocale as Locale);
+    if (savedLocale === "id" || savedLocale === "en") {
+      setLocaleState(savedLocale);
     }
   }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
 
   const setLocale = (newLocale: Locale) => {
     localStorage.setItem("locale", newLocale);
@@ -46,20 +48,20 @@ export const I18nProvider: React.FC<React.PropsWithChildren> = ({children}) => {
 
   const translations = useMemo(() => loadTranslations(locale), [locale]);
 
-  // Fungsi translasi (t)
-  const t = (mainKey: keyof Translations, subKey: string): string => {
-    // Memungkinkan akses seperti t('navigation', 'about')
-    const category = translations[mainKey] as Record<string, string>;
-    return category ? category[subKey] : `${mainKey}.${subKey} not found`;
-  };
+  const t = useCallback(
+    <K extends MainKey>(mainKey: K, subKey: keyof Translations[K]): string => {
+      const category = translations[mainKey] as Record<string, string>;
+      return (
+        (category && category[subKey as string]) ||
+        `${String(mainKey)}.${String(subKey)}`
+      );
+    },
+    [translations]
+  );
 
   const contextValue = useMemo(
-    () => ({
-      locale,
-      setLocale,
-      t,
-    }),
-    [locale, t]
+    () => ({locale, setLocale, t}),
+    [locale, setLocale, t]
   );
 
   return (

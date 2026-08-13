@@ -1,28 +1,35 @@
 import "../global.css";
-import {Inter} from "@next/font/google";
-import LocalFont from "@next/font/local";
+import {Inter} from "next/font/google";
+import LocalFont from "next/font/local";
 import {Metadata} from "next";
 import {I18nProvider} from "./providers/i18n-provider";
+import {ThemeProvider} from "./providers/theme-provider";
+import {siteConfig} from "@/util/site-config";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "rendzzx.com",
-    template: "%s | rendzzx.com",
+    default: siteConfig.title,
+    template: siteConfig.titleTemplate,
   },
-  description: "-",
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  authors: [{name: siteConfig.name, url: siteConfig.url}],
+  creator: siteConfig.name,
   openGraph: {
-    title: "rendzzx.com",
-    description: "-",
-    url: "https://rendzzx.com",
-    siteName: "rendzzx.com",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: `${siteConfig.handle}.com`,
     images: [
       {
-        url: "https://rendzzx.com/og-upscale.png",
+        url: siteConfig.ogImage,
         width: 1920,
         height: 1080,
+        alt: siteConfig.handle,
       },
     ],
-    locale: "en-US",
+    locale: "en_US",
     type: "website",
   },
   robots: {
@@ -37,13 +44,14 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "rendzzx_",
+    title: `${siteConfig.handle}_`,
     card: "summary_large_image",
   },
   icons: {
     shortcut: "/favicon.ico",
   },
 };
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -54,19 +62,41 @@ const calSans = LocalFont({
   variable: "--font-calsans",
 });
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  image: siteConfig.profileImage,
+  jobTitle: "Backend Developer",
+  description: siteConfig.description,
+  sameAs: [siteConfig.socials.github, siteConfig.socials.linkedin],
+};
+
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en" className={[inter.variable, calSans.variable].join(" ")}>
-      <head></head>
+    <html
+      lang="en"
+      className={[inter.variable, calSans.variable, "dark"].join(" ")}
+    >
       <body
-        className={`bg-black ${
+        className={`bg-zinc-200 dark:bg-black ${
           process.env.NODE_ENV === "development" ? "debug-screens" : undefined
         }`}
       >
-        <I18nProvider>
-          {/* BUNGKUS SELURUH APLIKASI */}
-          {children}
-        </I18nProvider>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{if(localStorage.getItem('theme')==='light'){document.documentElement.classList.remove('dark')}}catch(e){}})();",
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
+        />
+        <ThemeProvider>
+          <I18nProvider>{children}</I18nProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
