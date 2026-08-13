@@ -1,37 +1,56 @@
-// app/projects/[slug]/page.tsx
 import {Navigation} from "@/app/components/nav";
-import {getSortedProjectsData, Project} from "@/util/projects";
-import {ProjectDetailFetcher} from "./project-detail-fetcher"; // Import Client Fetcher
+import {getSortedProjectsData} from "@/util/projects";
+import {ProjectDetailClientWrapper} from "./project-detail-client-wrapper";
+import type {Metadata} from "next";
 
-// generateStaticParams tetap sama (memperbaiki error syntax spread)
-export async function generateStaticParams() {
-  const idProjects = await getSortedProjectsData("id");
-  const enProjects = await getSortedProjectsData("en");
+export function generateStaticParams() {
+  const idProjects = getSortedProjectsData("id");
+  const enProjects = getSortedProjectsData("en");
 
   const allSlugs = Array.from(
-    new Set([
-      ...idProjects.map((p) => p.slug),
-      ...enProjects.map((p) => p.slug),
-    ])
+    new Set([...idProjects.map((p) => p.slug), ...enProjects.map((p) => p.slug)])
   );
 
-  return allSlugs.map((slug) => ({
-    slug: slug,
-  }));
+  return allSlugs.map((slug) => ({slug}));
 }
 
-// Server Component: Meneruskan slug ke Client Fetcher
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{slug: string}>;
+}): Promise<Metadata> {
+  const {slug} = await params;
+  const projects = [
+    ...getSortedProjectsData("en"),
+    ...getSortedProjectsData("id"),
+  ];
+  const project = projects.find((p) => p.slug === slug);
+
+  return {
+    title: project ? project.title : "Project",
+    description: project?.description ?? "Project details",
+  };
+}
+
 export default async function ProjectDetailPage({
   params,
 }: {
-  params: {slug: string};
+  params: Promise<{slug: string}>;
 }) {
+  const {slug} = await params;
+  const projectsByLocale = {
+    en: getSortedProjectsData("en"),
+    id: getSortedProjectsData("id"),
+  };
+
   return (
-    <div className="relative min-h-screen bg-gradient-to-tl from-zinc-900/0 via-zinc-900 to-zinc-900/0">
+    <div className="relative min-h-screen bg-gradient-to-tl from-zinc-400 via-white to-zinc-400 dark:from-zinc-900/0 dark:via-zinc-900 dark:to-zinc-900/0">
       <Navigation />
 
-      {/* Meneruskan slug ke Client Fetcher */}
-      <ProjectDetailFetcher slug={params.slug} />
+      <ProjectDetailClientWrapper
+        slug={slug}
+        projectsByLocale={projectsByLocale}
+      />
     </div>
   );
 }

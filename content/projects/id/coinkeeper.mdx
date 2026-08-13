@@ -1,0 +1,99 @@
+---
+title: "CoinKeeper — Aplikasi Manajemen Keuangan Pribadi"
+description: "Aplikasi keuangan pribadi yang pintar dan aman untuk melacak pemasukan, pengeluaran, dan tabungan dengan dashboard yang intuitif."
+stack: Next.js 15, TypeScript, Tailwind CSS, Framer Motion, IndexedDB
+year: 2025
+published: false
+isFeatured: true
+status: completed
+url: https://coinkeeper.rendzzx.com
+---
+
+# CoinKeeper
+
+> Aplikasi manajemen keuangan pribadi modern yang membantu pengguna mengendalikan keuangan mereka. Dibangun dengan fokus pada keamanan, kesederhanaan, dan pengalaman pengguna yang mulus.
+
+---
+
+## 💡 Gambaran Umum
+
+CoinKeeper adalah pengelola keuangan pribadi berbasis web yang memungkinkan pengguna mencatat, mengelompokkan, dan memvisualisasikan aktivitas keuangan mereka — dari pengeluaran harian hingga tabungan jangka panjang. Aplikasi ini dirancang untuk membantu pengguna memahami kebiasaan belanja dan mencapai kontrol keuangan yang lebih baik.
+
+---
+
+## ✨ Fitur Utama
+
+- **Dashboard Cerdas** — Lihat pemasukan, pengeluaran, dan saldo dalam satu tempat.
+- **Dukungan Offline** — Menggunakan IndexedDB untuk penyimpanan lokal dan sinkronisasi data.
+- **Kategorisasi Transaksi** — Atur pengeluaran dengan tag dan kategori khusus.
+- **Lapisan Enkripsi** — Enkripsi lokal untuk data keuangan yang sensitif.
+- **Mode Gelap/Terang** — Tema menyesuaikan otomatis dengan preferensi sistem.
+- **Drag & Drop Kartu Dashboard** — Sesuaikan urutan kartu menggunakan UI yang intuitif.
+
+---
+
+## 🧩 Teknologi yang Digunakan
+
+- **Next.js 15 (App Router)** | Framework web inti
+- **TypeScript** | Keamanan tipe dan skalabilitas
+- **Tailwind CSS** | Styling UI dan layout responsif
+- **Framer Motion** | Animasi dan transisi yang halus
+- **IndexedDB** | Penyimpanan data lokal offline-first
+
+---
+
+## 🧠 Arsitektur & Fitur
+
+Aplikasi ini mengikuti arsitektur modular dengan komponen berbasis fitur:
+
+- `src/app/dashboard/` — Dashboard utama dengan kartu analitik.
+- `src/context/WalletContext.tsx` — Context global untuk state wallet.
+- `src/lib/encryption.ts` — Logika enkripsi/dekripsi data berbasis AES.
+- `src/lib/indexedDB.ts` — Menangani penyimpanan data, versioning, dan schema.
+
+---
+
+## 📸 Screenshot
+
+![Landing Page CoinKeeper](/images/projects/coinkeeper/landingpage.png)
+![Dashboard CoinKeeper](/images/projects/coinkeeper/dashboard.png)
+![Wallets](/images/projects/coinkeeper/wallets.png)
+![Transactions](/images/projects/coinkeeper/transaction.png)
+![Scheduled](/images/projects/coinkeeper/scheduled.png)
+![Debts and Loans](/images/projects/coinkeeper/debt.png)
+![Budget](/images/projects/coinkeeper/budget.png)
+![Report](/images/projects/coinkeeper/report.png)
+![History](/images/projects/coinkeeper/history.png)
+![Setting](/images/projects/coinkeeper/setting-prefrence.png)
+![Setting](/images/projects/coinkeeper/setting-apperance.png)
+![Setting](/images/projects/coinkeeper/setting-data.png)
+![Setting](/images/projects/coinkeeper/setting-datamanagement.png)
+
+---
+
+## 🚀 Tantangan & Pembelajaran
+
+- Mengimplementasikan **transaksi IndexedDB** dengan aman beserta fallback untuk upgrade schema.
+- Memahami pentingnya **trade-off performa enkripsi** pada dataset besar.
+- Meningkatkan konsistensi UI/UX antar perangkat menggunakan **grid responsif dan motion layout**.
+- Di-deploy di **Vercel** dengan penanganan gambar teroptimasi dan metadata dinamis.
+
+---
+
+## 🧭 Rencana ke Depan
+
+1. Dukungan multi-akun dan multi-mata uang.
+2. Integrasi dengan API perbankan.
+3. Prediksi pengeluaran menggunakan machine learning.
+4. Ekspor laporan dalam format PDF dan Excel.
+
+---
+
+## 🔗 Tautan
+
+- **Demo Langsung:** [coinkeeper.rendzzx.com](https://coinkeeper.rendzzx.com)
+- **Kode Sumber:** [github.com/rendzzx/coinkeeper](https://github.com/rendzzx/coinkeeper)
+
+---
+
+_Dibuat oleh [Rendy Maulana](https://rendzzx.com) — dirancang untuk kesederhanaan, privasi, dan kendali penuh._
