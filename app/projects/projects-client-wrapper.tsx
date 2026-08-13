@@ -29,12 +29,15 @@ export const ProjectsClientWrapper: React.FC<ProjectsClientWrapperProps> = ({
 
   useEffect(() => {
     setFeaturedIndex(0);
+  }, [locale]);
+
+  useEffect(() => {
     if (featured.length <= 1) return;
     const timer = setInterval(() => {
       setFeaturedIndex((i) => (i + 1) % featured.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [featured.length]);
+  }, [featuredIndex, featured.length]);
 
   useEffect(() => {
     const saved = localStorage.getItem("projectsTab");
@@ -99,7 +102,7 @@ export const ProjectsClientWrapper: React.FC<ProjectsClientWrapperProps> = ({
                         <span className="text-xs uppercase tracking-wider text-orange-500">
                           {t("projects_page", "featured")}
                         </span>
-                        <h2 className="text-3xl md:text-5xl font-display text-zinc-900 dark:text-white mt-3 mb-4">
+                        <h2 className="text-3xl md:text-5xl font-display text-zinc-900 dark:text-white mt-3 mb-4 leading-tight line-clamp-2 min-h-[2.5em]">
                           {featured[featuredIndex].title}
                         </h2>
                         <p className="text-zinc-600 dark:text-zinc-400 mb-4 max-w-2xl line-clamp-2">
