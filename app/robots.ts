@@ -1,11 +1,13 @@
 import {MetadataRoute} from "next";
+import {siteConfig} from "@/util/site-config";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: "/api/",
     },
-    sitemap: "https://rendzzx.com/sitemap.xml",
+    sitemap: `${siteConfig.url}/sitemap.xml`,
   };
 }

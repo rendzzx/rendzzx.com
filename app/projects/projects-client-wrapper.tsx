@@ -29,12 +29,15 @@ export const ProjectsClientWrapper: React.FC<ProjectsClientWrapperProps> = ({
 
   useEffect(() => {
     setFeaturedIndex(0);
+  }, [locale]);
+
+  useEffect(() => {
     if (featured.length <= 1) return;
     const timer = setInterval(() => {
       setFeaturedIndex((i) => (i + 1) % featured.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [featured.length]);
+  }, [featuredIndex, featured.length]);
 
   useEffect(() => {
     const saved = localStorage.getItem("projectsTab");
@@ -99,7 +102,7 @@ export const ProjectsClientWrapper: React.FC<ProjectsClientWrapperProps> = ({
                         <span className="text-xs uppercase tracking-wider text-orange-500">
                           {t("projects_page", "featured")}
                         </span>
-                        <h2 className="text-3xl md:text-5xl font-display text-zinc-900 dark:text-white mt-3 mb-4">
+                        <h2 className="text-3xl md:text-5xl font-display text-zinc-900 dark:text-white mt-3 mb-4 leading-tight line-clamp-2 min-h-[2.5em]">
                           {featured[featuredIndex].title}
                         </h2>
                         <p className="text-zinc-600 dark:text-zinc-400 mb-4 max-w-2xl line-clamp-2">
@@ -163,43 +166,42 @@ export const ProjectsClientWrapper: React.FC<ProjectsClientWrapperProps> = ({
           </section>
         )}
 
-        {/* === TABS === */}
-        <div className="flex items-center justify-center gap-3">
-          <button
-            onClick={() => switchTab("all")}
-            className={`px-5 py-2 text-sm font-medium rounded-full border transition-colors ${
-              activeTab === "all"
-                ? "bg-orange-600 border-orange-500 text-white"
-                : "border-zinc-300 text-zinc-600 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-100"
-            }`}
-          >
-            {t("projects_page", "all")}
-          </button>
-          <button
-            onClick={() => switchTab("completed")}
-            className={`px-5 py-2 text-sm font-medium rounded-full border transition-colors ${
-              activeTab === "completed"
-                ? "bg-orange-600 border-orange-500 text-white"
-                : "border-zinc-300 text-zinc-600 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-100"
-            }`}
-          >
-            {t("projects_page", "completed")}
-          </button>
-          <button
-            onClick={() => switchTab("wip")}
-            className={`px-5 py-2 text-sm font-medium rounded-full border transition-colors ${
-              activeTab === "wip"
-                ? "bg-orange-600 border-orange-500 text-white"
-                : "border-zinc-300 text-zinc-600 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-100"
-            }`}
-          >
-            {t("projects_page", "in_progress")}
-          </button>
-        </div>
+        {/* === TABS + SEARCH === */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
+            <button
+              onClick={() => switchTab("all")}
+              className={`px-5 py-2 text-sm font-medium rounded-full border transition-colors ${
+                activeTab === "all"
+                  ? "bg-orange-600 border-orange-500 text-white"
+                  : "border-zinc-300 text-zinc-600 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-100"
+              }`}
+            >
+              {t("projects_page", "all")}
+            </button>
+            <button
+              onClick={() => switchTab("completed")}
+              className={`px-5 py-2 text-sm font-medium rounded-full border transition-colors ${
+                activeTab === "completed"
+                  ? "bg-orange-600 border-orange-500 text-white"
+                  : "border-zinc-300 text-zinc-600 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-100"
+              }`}
+            >
+              {t("projects_page", "completed")}
+            </button>
+            <button
+              onClick={() => switchTab("wip")}
+              className={`px-5 py-2 text-sm font-medium rounded-full border transition-colors ${
+                activeTab === "wip"
+                  ? "bg-orange-600 border-orange-500 text-white"
+                  : "border-zinc-300 text-zinc-600 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-100"
+              }`}
+            >
+              {t("projects_page", "in_progress")}
+            </button>
+          </div>
 
-        {/* === SEARCH === */}
-        <div className="flex justify-center">
-          <div className="relative w-full max-w-md">
+          <div className="relative w-full md:w-64">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 dark:text-zinc-500" />
             <input
               type="text"

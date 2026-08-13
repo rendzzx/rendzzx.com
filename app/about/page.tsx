@@ -18,7 +18,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-gradient-to-tl from-zinc-400 via-white to-zinc-400 dark:from-zinc-900/0 dark:via-zinc-900 dark:to-zinc-900/0">
       <Navigation />
 
-      <div className="container flex flex-col items-center justify-center min-h-screen mx-auto px-4 py-20">
+      <div className="container flex flex-col items-center justify-center min-h-screen mx-auto px-4 pt-28 pb-24">
         <div className="grid grid-cols-1 md:grid-cols-[auto,1fr] gap-8 md:gap-12 items-center w-full max-w-3xl">
           {/* Kiri: Foto + Statistik + Tombol */}
           <div className="flex flex-col items-center gap-6 md:w-48 shrink-0">
@@ -44,15 +44,6 @@ export default function AboutPage() {
                   </p>
                 </div>
               ))}
-            </div>
-
-            <div className="text-center">
-              <p className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">
-                {t("about_page", "education_place")}
-              </p>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
-                {t("about_page", "education_major")}
-              </p>
             </div>
 
             <div className="flex flex-col gap-3 w-full">

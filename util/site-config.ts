@@ -10,6 +10,8 @@ export const siteConfig = {
   email: "rendzzx@hotmail.com",
   ogImage: "https://rendzzx.com/og-upscale.png",
   profileImage: "https://rendzzx.com/me.png",
+  showEducation: true,
+  showCertifications: true,
   keywords: [
     "Backend Developer",
     "PHP",

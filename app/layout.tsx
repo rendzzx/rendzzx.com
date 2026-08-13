@@ -77,6 +77,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={[inter.variable, calSans.variable, "dark"].join(" ")}
     >
       <body
@@ -88,6 +89,12 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           dangerouslySetInnerHTML={{
             __html:
               "(function(){try{if(localStorage.getItem('theme')==='light'){document.documentElement.classList.remove('dark')}}catch(e){}})();",
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{var l=localStorage.getItem('locale');if(l==='id'||l==='en'){document.documentElement.lang=l}}catch(e){}})();",
           }}
         />
         <script
