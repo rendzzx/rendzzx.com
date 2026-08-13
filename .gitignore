@@ -35,7 +35,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.contentlayer
-
-/.idx/dev.nix
 package-lock.json
