@@ -201,8 +201,8 @@ export const SkillsClientWrapper: React.FC<SkillsClientWrapperProps> = ({
               {filteredCertifications.map((cert) => (
                 <Card key={cert.slug}>
                   <article className="p-6 md:p-8">
-                    <div className="flex items-start justify-between gap-4 flex-wrap">
-                      <div className="flex items-start gap-4">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex items-start gap-4 flex-1 min-w-0">
                         <span className="flex items-center justify-center w-11 h-11 shrink-0 rounded-xl bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/20">
                           {cert.type === "competency" ? (
                             <Award className="w-5 h-5" />
@@ -210,8 +210,8 @@ export const SkillsClientWrapper: React.FC<SkillsClientWrapperProps> = ({
                             <CalendarCheck className="w-5 h-5" />
                           )}
                         </span>
-                        <div>
-                          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-lg font-semibold text-zinc-900 dark:text-white line-clamp-2">
                             {cert.title}
                           </h3>
                           <p className="text-zinc-600 dark:text-zinc-400 mt-0.5">
@@ -219,7 +219,7 @@ export const SkillsClientWrapper: React.FC<SkillsClientWrapperProps> = ({
                           </p>
                         </div>
                       </div>
-                      <span className="text-sm text-zinc-500 dark:text-zinc-400">
+                      <span className="text-sm text-zinc-500 dark:text-zinc-400 shrink-0">
                         {cert.date}
                       </span>
                     </div>
