@@ -166,43 +166,42 @@ export const ProjectsClientWrapper: React.FC<ProjectsClientWrapperProps> = ({
           </section>
         )}
 
-        {/* === TABS === */}
-        <div className="flex items-center justify-center gap-3">
-          <button
-            onClick={() => switchTab("all")}
-            className={`px-5 py-2 text-sm font-medium rounded-full border transition-colors ${
-              activeTab === "all"
-                ? "bg-orange-600 border-orange-500 text-white"
-                : "border-zinc-300 text-zinc-600 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-100"
-            }`}
-          >
-            {t("projects_page", "all")}
-          </button>
-          <button
-            onClick={() => switchTab("completed")}
-            className={`px-5 py-2 text-sm font-medium rounded-full border transition-colors ${
-              activeTab === "completed"
-                ? "bg-orange-600 border-orange-500 text-white"
-                : "border-zinc-300 text-zinc-600 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-100"
-            }`}
-          >
-            {t("projects_page", "completed")}
-          </button>
-          <button
-            onClick={() => switchTab("wip")}
-            className={`px-5 py-2 text-sm font-medium rounded-full border transition-colors ${
-              activeTab === "wip"
-                ? "bg-orange-600 border-orange-500 text-white"
-                : "border-zinc-300 text-zinc-600 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-100"
-            }`}
-          >
-            {t("projects_page", "in_progress")}
-          </button>
-        </div>
+        {/* === TABS + SEARCH === */}
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
+            <button
+              onClick={() => switchTab("all")}
+              className={`px-5 py-2 text-sm font-medium rounded-full border transition-colors ${
+                activeTab === "all"
+                  ? "bg-orange-600 border-orange-500 text-white"
+                  : "border-zinc-300 text-zinc-600 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-100"
+              }`}
+            >
+              {t("projects_page", "all")}
+            </button>
+            <button
+              onClick={() => switchTab("completed")}
+              className={`px-5 py-2 text-sm font-medium rounded-full border transition-colors ${
+                activeTab === "completed"
+                  ? "bg-orange-600 border-orange-500 text-white"
+                  : "border-zinc-300 text-zinc-600 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-100"
+              }`}
+            >
+              {t("projects_page", "completed")}
+            </button>
+            <button
+              onClick={() => switchTab("wip")}
+              className={`px-5 py-2 text-sm font-medium rounded-full border transition-colors ${
+                activeTab === "wip"
+                  ? "bg-orange-600 border-orange-500 text-white"
+                  : "border-zinc-300 text-zinc-600 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-100"
+              }`}
+            >
+              {t("projects_page", "in_progress")}
+            </button>
+          </div>
 
-        {/* === SEARCH === */}
-        <div className="flex justify-center">
-          <div className="relative w-full max-w-md">
+          <div className="relative w-full md:w-64">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 dark:text-zinc-500" />
             <input
               type="text"
