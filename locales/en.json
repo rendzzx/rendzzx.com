@@ -33,7 +33,9 @@
     "role_job1": "Software Programmer",
     "company_job1": "PT IFCA Property 365 Indonesia",
     "duration_job1": "Jul 2019 - Jul 2021",
-    "desc_job1": "Developed, tested, and optimized property web applications. Created and managed **RESTful APIs** to connect various services and ensure seamless data flow between systems. Involved in developing HR modules (**leave**, **payroll**, **payslips**) using **MS SQL Server**, and integrated **payment gateways** (Midtrans and Sprint) to handle client payments."
+    "desc_job1": "Developed, tested, and optimized property web applications. Created and managed **RESTful APIs** to connect various services and ensure seamless data flow between systems. Involved in developing HR modules (**leave**, **payroll**, **payslips**) using **MS SQL Server**, and integrated **payment gateways** (Midtrans and Sprint) to handle client payments.",
+    "education": "Education",
+    "relevant_courses": "Relevant Courses"
   },
   "skills_page": {
     "header": "My Skills",
@@ -66,7 +68,16 @@
     "details_api_tools": "Postman, Requestly (API Testing)",
     "title_soft_skills": "Soft Skills",
     "details_soft_skills": "Problem-solving, Collaboration, Time Management",
-    "details_scrum": "Scrum"
+    "details_scrum": "Scrum",
+    "certifications": "Certifications",
+    "view_certificate": "View Certificate",
+    "cert_all": "All",
+    "cert_competency": "Competency",
+    "cert_attendance": "Attendance",
+    "cert_expired": "Expired",
+    "cert_search_placeholder": "Search certifications...",
+    "cert_no_results": "No certifications match.",
+    "cert_valid_until": "Valid until"
   },
   "projects_page": {
     "featured": "Featured",

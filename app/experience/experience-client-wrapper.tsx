@@ -2,23 +2,28 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import {Calendar, MapPin, ArrowUpRight} from "lucide-react";
+import {Calendar, MapPin, ArrowUpRight, GraduationCap} from "lucide-react";
 import {Card} from "@/app/components/card";
 import {useI18n} from "../providers/i18n-provider";
 import {simpleMarkdownToHtml} from "@/util/markdown-parser";
+import {siteConfig} from "@/util/site-config";
 import type {Experience} from "@/util/experience";
+import type {Education} from "@/util/education";
 
 interface ExperienceClientWrapperProps {
   experiencesByLocale: Record<string, Experience[]>;
+  educationsByLocale: Record<string, Education[]>;
 }
 
 export const ExperienceClientWrapper: React.FC<ExperienceClientWrapperProps> = ({
   experiencesByLocale,
+  educationsByLocale,
 }) => {
   const {locale, t} = useI18n();
 
   const experiences =
     experiencesByLocale[locale] ?? experiencesByLocale.en ?? [];
+  const educations = educationsByLocale[locale] ?? educationsByLocale.en ?? [];
 
   if (experiences.length === 0) {
     return (
@@ -130,6 +135,73 @@ export const ExperienceClientWrapper: React.FC<ExperienceClientWrapperProps> = (
           ))}
         </div>
       </div>
+
+      {siteConfig.showEducation && educations.length > 0 && (
+        <div className="w-full max-w-4xl mt-16">
+          <h2 className="text-2xl md:text-3xl font-bold font-display text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-amber-400 mb-6 text-center">
+            {t("experience_page", "education")}
+          </h2>
+          <div className="space-y-6">
+            {educations.map((edu) => (
+              <Card key={edu.slug}>
+                <article className="p-6 md:p-8">
+                  <div className="flex items-start justify-between gap-4 flex-wrap">
+                    <div className="flex items-start gap-4">
+                      <span className="flex items-center justify-center w-11 h-11 shrink-0 rounded-xl bg-orange-500/10 text-orange-600 dark:text-orange-400 border border-orange-500/20">
+                        <GraduationCap className="w-5 h-5" />
+                      </span>
+                      <div>
+                        <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
+                          {edu.degree}
+                        </h3>
+                        <p className="text-zinc-600 dark:text-zinc-400 mt-0.5">
+                          {edu.school}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="text-right text-sm text-zinc-500 dark:text-zinc-400 space-y-1">
+                      <div className="flex items-center justify-end gap-2">
+                        <Calendar className="w-4 h-4" />
+                        <span>
+                          {edu.startDate} — {edu.endDate}
+                        </span>
+                      </div>
+                      {edu.gpa && <div>GPA {edu.gpa}</div>}
+                    </div>
+                  </div>
+
+                  {edu.summary && (
+                    <div
+                      className="mt-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed [&_strong]:text-zinc-900 dark:[&_strong]:text-white"
+                      dangerouslySetInnerHTML={{
+                        __html: simpleMarkdownToHtml(edu.summary),
+                      }}
+                    />
+                  )}
+
+                  {edu.courses.length > 0 && (
+                    <>
+                      <h4 className="mt-4 text-xs font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
+                        {t("experience_page", "relevant_courses")}
+                      </h4>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {edu.courses.map((course) => (
+                          <span
+                            key={course}
+                            className="text-xs px-3 py-1.5 rounded-full bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-800/60 dark:text-zinc-300 dark:border-zinc-700/60"
+                          >
+                            {course}
+                          </span>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </article>
+              </Card>
+            ))}
+          </div>
+        </div>
+      )}
     </>
   );
 };

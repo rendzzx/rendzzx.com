@@ -33,7 +33,9 @@
     "role_job1": "Programmer Perangkat Lunak",
     "company_job1": "PT IFCA Property 365 Indonesia",
     "duration_job1": "Jul 2019 - Jul 2021",
-    "desc_job1": "Mengembangkan, menguji, dan mengoptimalkan aplikasi web properti. Menciptakan dan mengelola **RESTful API** untuk menghubungkan berbagai layanan dan memastikan aliran data yang mulus antara sistem. Terlibat dalam pengembangan modul HR (**cuti**, **payroll**, **slip gaji**) menggunakan **MS SQL Server**, serta mengintegrasikan **payment gateway** (Midtrans dan Sprint) untuk menangani pembayaran klien."
+    "desc_job1": "Mengembangkan, menguji, dan mengoptimalkan aplikasi web properti. Menciptakan dan mengelola **RESTful API** untuk menghubungkan berbagai layanan dan memastikan aliran data yang mulus antara sistem. Terlibat dalam pengembangan modul HR (**cuti**, **payroll**, **slip gaji**) menggunakan **MS SQL Server**, serta mengintegrasikan **payment gateway** (Midtrans dan Sprint) untuk menangani pembayaran klien.",
+    "education": "Pendidikan",
+    "relevant_courses": "Mata Kuliah Relevan"
   },
   "skills_page": {
     "header": "Keahlian Saya",
@@ -66,7 +68,16 @@
     "details_api_tools": "Postman, Requestly (Pengujian API)",
     "title_soft_skills": "Soft Skills",
     "details_soft_skills": "Problem-solving, Kolaborasi, Manajemen Waktu",
-    "details_scrum": "Scrum"
+    "details_scrum": "Scrum",
+    "certifications": "Sertifikasi",
+    "view_certificate": "Lihat Sertifikat",
+    "cert_all": "Semua",
+    "cert_competency": "Kompetensi",
+    "cert_attendance": "Kehadiran",
+    "cert_expired": "Kadaluarsa",
+    "cert_search_placeholder": "Cari sertifikasi...",
+    "cert_no_results": "Tidak ada sertifikasi yang cocok.",
+    "cert_valid_until": "Berlaku hingga"
   },
   "projects_page": {
     "featured": "Unggulan",
