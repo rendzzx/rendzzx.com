@@ -1,62 +1,76 @@
 "use client";
-import {Github, Mail, Linkedin} from "lucide-react";
+import {Github, Mail, Linkedin, ArrowRight} from "lucide-react";
 import Link from "next/link";
 import {Navigation} from "../components/nav";
 import {Card} from "../components/card";
+import {useI18n} from "../providers/i18n-provider";
+import {siteConfig} from "@/util/site-config";
 
-const socials = [
-  {
-    icon: <Mail size={20} />,
-    href: "mailto:rendzzx@hotmail.com",
-    label: "Email",
-    handle: "rendzzx@hotmail.com",
-  },
-  {
-    icon: <Github size={20} />,
-    href: "https://github.com/rendzzx",
-    label: "Github",
-    handle: "rendzzx",
-  },
-  {
-    icon: <Linkedin size={20} />,
-    href: "https://www.linkedin.com/in/rendzzx/",
-    label: "LinkedIn",
-    handle: "rendzzx",
-  },
-];
+export default function ContactPage() {
+  const {t} = useI18n();
 
-export default function Example() {
+  const socials = [
+    {
+      icon: <Mail size={18} />,
+      href: `mailto:${siteConfig.email}`,
+      label: t("contact_page", "email"),
+      handle: siteConfig.email,
+    },
+    {
+      icon: <Github size={18} />,
+      href: siteConfig.socials.github,
+      label: t("contact_page", "github"),
+      handle: siteConfig.handle,
+    },
+    {
+      icon: <Linkedin size={18} />,
+      href: siteConfig.socials.linkedin,
+      label: t("contact_page", "linkedin"),
+      handle: siteConfig.handle,
+    },
+  ];
+
   return (
-    <div className=" bg-gradient-to-tl from-zinc-900/0 via-zinc-900 to-zinc-900/0">
+    <div className="min-h-screen bg-gradient-to-tl from-zinc-400 via-white to-zinc-400 dark:from-zinc-900/0 dark:via-zinc-900 dark:to-zinc-900/0">
       <Navigation />
-      <div className="container flex items-center justify-center min-h-screen px-4 mx-auto">
-        <div className="grid w-full grid-cols-1 gap-8 mx-auto mt-32 sm:mt-0 sm:grid-cols-3 lg:gap-16 pt-24">
+      <div className="container flex flex-col items-center justify-center min-h-screen mx-auto px-4 py-16">
+        <p className="text-center text-zinc-600 dark:text-zinc-400 max-w-xl mb-8">
+          {t("contact_page", "subtitle")}
+        </p>
+
+        <div className="w-full max-w-md space-y-3">
           {socials.map((s) => (
-            <Card>
+            <Card key={s.href}>
               <Link
                 href={s.href}
-                target="_blank"
-                className="p-4 relative flex flex-col items-center gap-4 duration-700 group md:gap-8 md:py-24  lg:pb-48  md:p-16"
+                target={s.href.startsWith("mailto:") ? undefined : "_blank"}
+                rel={s.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                className="flex items-center gap-4 p-4 group"
               >
-                <span
-                  className="absolute w-px h-2/3 bg-gradient-to-b from-zinc-500 via-zinc-500/50 to-transparent"
-                  aria-hidden="true"
-                />
-                <span className="relative z-10 flex items-center justify-center w-12 h-12 text-sm duration-1000 border rounded-full text-zinc-200 group-hover:text-white group-hover:bg-zinc-900 border-zinc-500 bg-zinc-900 group-hover:border-zinc-200 drop-shadow-orange">
+                <span className="flex items-center justify-center w-10 h-10 shrink-0 rounded-full border border-zinc-300 dark:border-zinc-700 text-zinc-600 dark:text-zinc-300 group-hover:text-orange-500 group-hover:border-orange-500/60 transition-colors">
                   {s.icon}
-                </span>{" "}
-                <div className="z-10 flex flex-col items-center">
-                  <span className="lg:text-xl font-medium duration-150 xl:text-3xl text-zinc-200 group-hover:text-white font-display">
-                    {s.handle}
-                  </span>
-                  <span className="mt-4 text-sm text-center duration-1000 text-zinc-400 group-hover:text-zinc-200">
+                </span>
+                <div className="flex-1 min-w-0">
+                  <span className="block text-xs uppercase tracking-wider text-zinc-500">
                     {s.label}
                   </span>
+                  <span className="block truncate text-zinc-900 dark:text-zinc-200 font-medium">
+                    {s.handle}
+                  </span>
                 </div>
+                <ArrowRight className="w-4 h-4 text-zinc-400 dark:text-zinc-500 group-hover:translate-x-1 group-hover:text-orange-500 transition-transform" />
               </Link>
             </Card>
           ))}
         </div>
+
+        <Link
+          href="/cv_rendy.pdf"
+          download
+          className="mt-8 inline-block px-8 py-3 text-sm font-medium text-white rounded-full bg-orange-600 hover:bg-orange-500 transition-colors duration-300"
+        >
+          {t("about_page", "download_cv")}
+        </Link>
       </div>
     </div>
   );
