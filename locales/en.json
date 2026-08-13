@@ -98,5 +98,9 @@
     "email": "Email",
     "github": "Github",
     "linkedin": "LinkedIn"
+  },
+  "not_found": {
+    "description": "Page not found",
+    "go_home": "Go back home"
   }
 }
