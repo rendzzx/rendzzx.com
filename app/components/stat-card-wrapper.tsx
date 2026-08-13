@@ -11,7 +11,7 @@ export const StatCardWrapper: React.FC<PropsWithChildren> = ({children}) => {
         2. bg-zinc-900 untuk background yang solid dan tidak terpotong.
         3. rounded-xl untuk bentuk kartu yang konsisten.
       */}
-      <div className="relative z-50 bg-zinc-900 rounded-xl h-full w-full">
+      <div className="relative z-50 bg-white dark:bg-zinc-900 rounded-xl h-full w-full">
         {/* Inner Padding dan Centering */}
         <div className="p-4 md:p-6 text-center h-full">{children}</div>
       </div>
