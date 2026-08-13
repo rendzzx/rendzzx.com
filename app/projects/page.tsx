@@ -19,7 +19,7 @@ export default function ProjectsPage() {
     <div className="relative min-h-screen bg-gradient-to-tl from-zinc-400 via-white to-zinc-400 dark:from-zinc-900/0 dark:via-zinc-900 dark:to-zinc-900/0">
       <Navigation />
 
-      <div className="container flex flex-col items-center justify-center pt-24 mx-auto px-4">
+      <div className="container flex flex-col items-center justify-center pt-24 pb-24 mx-auto px-4">
         <ProjectsClientWrapper projectsByLocale={projectsByLocale} />
       </div>
     </div>

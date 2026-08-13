@@ -4,7 +4,17 @@ import {usePathname} from "next/navigation";
 import React, {useEffect, useRef, useState} from "react";
 import {useI18n} from "../providers/i18n-provider";
 import {useTheme} from "../providers/theme-provider";
-import {Menu, X, Moon, Sun} from "lucide-react";
+import {
+  Menu,
+  X,
+  Moon,
+  Sun,
+  Briefcase,
+  FolderKanban,
+  Sparkles,
+  Mail,
+  User,
+} from "lucide-react";
 import {siteConfig} from "@/util/site-config";
 
 export const Navigation: React.FC = () => {
@@ -42,6 +52,14 @@ export const Navigation: React.FC = () => {
   const toggleLocale = () => {
     setLocale(locale === "id" ? "en" : "id");
     setIsMobileMenuOpen(false);
+  };
+
+  const navIcons: Record<string, React.ReactNode> = {
+    experience: <Briefcase className="w-5 h-5" />,
+    projects: <FolderKanban className="w-5 h-5" />,
+    skills: <Sparkles className="w-5 h-5" />,
+    contact: <Mail className="w-5 h-5" />,
+    about: <User className="w-5 h-5" />,
   };
 
   return (
@@ -181,6 +199,30 @@ export const Navigation: React.FC = () => {
           </nav>
         </div>
       )}
+
+      {/* === 4. MOBILE BOTTOM NAVIGATION === */}
+      <nav className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/80 dark:bg-zinc-900/80 backdrop-blur border-t border-zinc-200 dark:border-zinc-800">
+        <div className="grid grid-cols-5">
+          {siteConfig.nav.map((item) => {
+            const isActive =
+              pathname === item.href || pathname.startsWith(item.href + "/");
+            return (
+              <Link
+                key={item.id}
+                href={item.href}
+                className={`flex flex-col items-center justify-center gap-1 py-2.5 text-[10px] font-medium transition-colors ${
+                  isActive
+                    ? "text-orange-500 dark:text-orange-400"
+                    : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+                }`}
+              >
+                {navIcons[item.id]}
+                <span>{t("navigation", item.id)}</span>
+              </Link>
+            );
+          })}
+        </div>
+      </nav>
     </header>
   );
 };

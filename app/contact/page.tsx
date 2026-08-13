@@ -33,7 +33,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gradient-to-tl from-zinc-400 via-white to-zinc-400 dark:from-zinc-900/0 dark:via-zinc-900 dark:to-zinc-900/0">
       <Navigation />
-      <div className="container flex flex-col items-center justify-center min-h-screen mx-auto px-4 py-16">
+      <div className="container flex flex-col items-center justify-center min-h-screen mx-auto px-4 pt-24 pb-24">
         <p className="text-center text-zinc-600 dark:text-zinc-400 max-w-xl mb-8">
           {t("contact_page", "subtitle")}
         </p>
