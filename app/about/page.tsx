@@ -46,15 +46,6 @@ export default function AboutPage() {
               ))}
             </div>
 
-            <div className="text-center">
-              <p className="text-sm font-semibold text-zinc-800 dark:text-zinc-200">
-                {t("about_page", "education_place")}
-              </p>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
-                {t("about_page", "education_major")}
-              </p>
-            </div>
-
             <div className="flex flex-col gap-3 w-full">
               <Link
                 href="/cv_rendy.pdf"

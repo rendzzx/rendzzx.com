@@ -10,10 +10,26 @@ const certificateDirectory = path.join(
 );
 
 export async function GET(
-  _req: Request,
+  req: Request,
   {params}: {params: Promise<{slug: string}>}
 ) {
   const {slug} = await params;
+
+  const referer = req.headers.get("referer");
+  const requestHost = req.headers.get("host") ?? new URL(req.url).host;
+
+  let allowed = false;
+  if (referer) {
+    try {
+      allowed = new URL(referer).host === requestHost;
+    } catch {
+      allowed = false;
+    }
+  }
+
+  if (!allowed) {
+    return new NextResponse("Forbidden", {status: 403});
+  }
 
   const all = [
     ...getSortedCertificationData("en"),
