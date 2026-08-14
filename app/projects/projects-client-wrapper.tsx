@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import {useEffect, useState} from "react";
-import {AnimatePresence, motion} from "framer-motion";
+import {motion} from "framer-motion";
 import {ArrowRight, ChevronLeft, ChevronRight, Search} from "lucide-react";
 import {Card} from "@/app/components/card";
 import {useI18n} from "../providers/i18n-provider";
@@ -24,20 +24,65 @@ export const ProjectsClientWrapper: React.FC<ProjectsClientWrapperProps> = ({
   const inProgress = projects.filter((p) => p.status === "wip");
 
   const [activeTab, setActiveTab] = useState<"all" | "completed" | "wip">("all");
-  const [featuredIndex, setFeaturedIndex] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
 
+  const count = featured.length;
+  const slides =
+    count > 1
+      ? [featured[count - 1], ...featured, featured[0]]
+      : featured;
+  const [index, setIndex] = useState(count > 1 ? 1 : 0);
+  const [snap, setSnap] = useState(false);
+
+  const activeRealIndex = ((index - 1) % count + count) % count;
+
+  const SLIDE_DURATION = 500;
+
+  const goTo = (i: number) => {
+    setSnap(false);
+    setIndex(i + 1);
+  };
+
+  const next = () => {
+    setSnap(false);
+    setIndex((i) => Math.min(i + 1, count + 1));
+  };
+
+  const prev = () => {
+    setSnap(false);
+    setIndex((i) => Math.max(i - 1, 0));
+  };
+
   useEffect(() => {
-    setFeaturedIndex(0);
+    setIndex(featured.length > 1 ? 1 : 0);
   }, [locale]);
 
   useEffect(() => {
-    if (featured.length <= 1) return;
-    const timer = setInterval(() => {
-      setFeaturedIndex((i) => (i + 1) % featured.length);
+    if (count <= 1) return;
+    const timer = setTimeout(() => {
+      setSnap(false);
+      setIndex((i) => i + 1);
     }, 5000);
-    return () => clearInterval(timer);
-  }, [featuredIndex, featured.length]);
+    return () => clearTimeout(timer);
+  }, [index, count]);
+
+  useEffect(() => {
+    if (count <= 1) return;
+    if (index === 0) {
+      const timer = setTimeout(() => {
+        setSnap(true);
+        setIndex(count);
+      }, SLIDE_DURATION);
+      return () => clearTimeout(timer);
+    }
+    if (index === count + 1) {
+      const timer = setTimeout(() => {
+        setSnap(true);
+        setIndex(1);
+      }, SLIDE_DURATION);
+      return () => clearTimeout(timer);
+    }
+  }, [index, count]);
 
   useEffect(() => {
     const saved = localStorage.getItem("projectsTab");
@@ -88,78 +133,82 @@ export const ProjectsClientWrapper: React.FC<ProjectsClientWrapperProps> = ({
         {featured.length > 0 && (
           <section className="relative">
             <div className="relative overflow-hidden rounded-xl">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={featuredIndex}
-                  initial={{opacity: 0, x: 60}}
-                  animate={{opacity: 1, x: 0}}
-                  exit={{opacity: 0, x: -60}}
-                  transition={{duration: 0.35, ease: "easeInOut"}}
-                >
-                  <Card>
-                    <Link href={`/projects/${featured[featuredIndex].slug}`}>
-                      <article className="p-8 md:p-12 min-h-[300px] md:min-h-[340px] flex flex-col justify-between">
-                        <span className="text-xs uppercase tracking-wider text-orange-500">
-                          {t("projects_page", "featured")}
-                        </span>
-                        <h2 className="text-3xl md:text-5xl font-display text-zinc-900 dark:text-white mt-3 mb-4 leading-tight line-clamp-2 min-h-[2.5em]">
-                          {featured[featuredIndex].title}
-                        </h2>
-                        <p className="text-zinc-600 dark:text-zinc-400 mb-4 max-w-2xl line-clamp-2 min-h-[3em]">
-                          {featured[featuredIndex].description}
-                        </p>
-                        <div className="flex flex-wrap items-center gap-4 text-sm text-zinc-500">
-                          <span>{featured[featuredIndex].year}</span>
-                          <span className="text-zinc-700">|</span>
-                          <span>{featured[featuredIndex].stack}</span>
-                        </div>
-                        <span className="text-orange-500 flex items-center gap-2 mt-6">
-                          {t("projects_page", "view_details")}{" "}
-                          <ArrowRight className="w-4 h-4" />
-                        </span>
-                      </article>
-                    </Link>
-                  </Card>
-                </motion.div>
-              </AnimatePresence>
+              <motion.div
+                className="flex"
+                animate={{x: `-${index * 100}%`}}
+                transition={
+                  snap
+                    ? {duration: 0}
+                    : {duration: SLIDE_DURATION / 1000, ease: "easeInOut"}
+                }
+              >
+                {slides.map((slide, i) => (
+                  <div key={i} className="w-full shrink-0">
+                    <Card>
+                      <Link href={`/projects/${slide.slug}`}>
+                        <article className="p-8 md:p-12 min-h-[300px] md:min-h-[340px] flex flex-col justify-between">
+                          <span className="text-xs uppercase tracking-wider text-orange-500">
+                            {t("projects_page", "featured")}
+                          </span>
+                          <h2 className="text-3xl md:text-5xl font-display text-zinc-900 dark:text-white mt-3 mb-4 leading-tight line-clamp-2 min-h-[2.5em]">
+                            {slide.title}
+                          </h2>
+                          <p className="text-zinc-600 dark:text-zinc-400 mb-4 max-w-2xl line-clamp-2 min-h-[3em]">
+                            {slide.description}
+                          </p>
+                          <div className="flex flex-wrap items-center gap-4 text-sm text-zinc-500">
+                            <span>{slide.year}</span>
+                            <span className="text-zinc-700">|</span>
+                            <span>{slide.stack}</span>
+                          </div>
+                          <span className="text-orange-500 flex items-center gap-2 mt-6">
+                            {t("projects_page", "view_details")}{" "}
+                            <ArrowRight className="w-4 h-4" />
+                          </span>
+                        </article>
+                      </Link>
+                    </Card>
+                  </div>
+                ))}
+              </motion.div>
             </div>
 
             {featured.length > 1 && (
               <>
                 <button
-                  onClick={() =>
-                    setFeaturedIndex(
-                      (i) => (i - 1 + featured.length) % featured.length
-                    )
-                  }
+                  onClick={prev}
                   aria-label="Previous"
                   className="absolute left-2 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-zinc-900/70 border border-zinc-700 text-zinc-300 hover:text-white hover:bg-zinc-800 transition"
                 >
                   <ChevronLeft className="w-5 h-5" />
                 </button>
                 <button
-                  onClick={() =>
-                    setFeaturedIndex((i) => (i + 1) % featured.length)
-                  }
+                  onClick={next}
                   aria-label="Next"
                   className="absolute right-2 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-zinc-900/70 border border-zinc-700 text-zinc-300 hover:text-white hover:bg-zinc-800 transition"
                 >
                   <ChevronRight className="w-5 h-5" />
                 </button>
 
-                <div className="flex justify-center gap-2 mt-4">
-                  {featured.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setFeaturedIndex(i)}
-                      aria-label={`Go to slide ${i + 1}`}
-                      className={`h-2 rounded-full transition-all ${
-                        i === featuredIndex
-                          ? "w-6 bg-orange-500"
-                          : "w-2 bg-zinc-700 hover:bg-zinc-500"
-                      }`}
+                <div className="flex justify-center mt-4">
+                  <div className="relative flex gap-4">
+                    {featured.map((_, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => goTo(i)}
+                        aria-label={`Go to slide ${i + 1}`}
+                        className="h-2 w-2 rounded-full bg-zinc-700 hover:bg-zinc-500 transition-colors"
+                      />
+                    ))}
+                    <motion.span
+                      aria-hidden
+                      className="pointer-events-none absolute top-0 -left-2 h-2 w-6 rounded-full bg-orange-500"
+                      initial={false}
+                      animate={{x: activeRealIndex * 24}}
+                      transition={{type: "spring", stiffness: 400, damping: 30}}
                     />
-                  ))}
+                  </div>
                 </div>
               </>
             )}
