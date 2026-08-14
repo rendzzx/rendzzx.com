@@ -96,7 +96,6 @@ export const SkillsClientWrapper: React.FC<SkillsClientWrapperProps> = ({
       details: [
         t("skills_page", "details_laravel"),
         t("skills_page", "details_nextjs"),
-        t("skills_page", "details_learning"),
       ],
       span: "md:col-span-1",
     },
