@@ -105,7 +105,7 @@ export const ProjectsClientWrapper: React.FC<ProjectsClientWrapperProps> = ({
                         <h2 className="text-3xl md:text-5xl font-display text-zinc-900 dark:text-white mt-3 mb-4 leading-tight line-clamp-2 min-h-[2.5em]">
                           {featured[featuredIndex].title}
                         </h2>
-                        <p className="text-zinc-600 dark:text-zinc-400 mb-4 max-w-2xl line-clamp-2">
+                        <p className="text-zinc-600 dark:text-zinc-400 mb-4 max-w-2xl line-clamp-2 min-h-[3em]">
                           {featured[featuredIndex].description}
                         </p>
                         <div className="flex flex-wrap items-center gap-4 text-sm text-zinc-500">
