@@ -4,6 +4,7 @@ import LocalFont from "next/font/local";
 import {Metadata} from "next";
 import {I18nProvider} from "./providers/i18n-provider";
 import {ThemeProvider} from "./providers/theme-provider";
+import {ScrollProgress} from "./components/scroll-progress";
 import {siteConfig} from "@/util/site-config";
 
 export const metadata: Metadata = {
@@ -101,6 +102,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
         />
+        <ScrollProgress />
         <ThemeProvider>
           <I18nProvider>{children}</I18nProvider>
         </ThemeProvider>
