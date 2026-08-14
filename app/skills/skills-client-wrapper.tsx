@@ -1,6 +1,7 @@
 "use client";
 
 import {useState} from "react";
+import dynamic from "next/dynamic";
 import {
   Code,
   Server,
@@ -47,6 +48,16 @@ function splitSkills(value: string): string[] {
 interface SkillsClientWrapperProps {
   certificationsByLocale: Record<string, Certification[]>;
 }
+
+const CertificateViewer = dynamic(
+  () => import("./certificate-viewer").then((m) => m.CertificateViewer),
+  {
+    ssr: false,
+    loading: () => (
+      <p className="p-6 text-sm text-zinc-500 dark:text-zinc-400">Loading…</p>
+    ),
+  }
+);
 
 export const SkillsClientWrapper: React.FC<SkillsClientWrapperProps> = ({
   certificationsByLocale,
@@ -356,10 +367,9 @@ export const SkillsClientWrapper: React.FC<SkillsClientWrapperProps> = ({
                   className="w-full h-full object-contain"
                 />
               ) : (
-                <iframe
+                <CertificateViewer
                   src={`/api/certificates/${activeCert.slug}`}
-                  title={activeCert.title}
-                  className="w-full h-full"
+                  alt={activeCert.title}
                 />
               )}
             </div>
