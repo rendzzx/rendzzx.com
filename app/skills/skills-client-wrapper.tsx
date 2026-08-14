@@ -21,6 +21,29 @@ import {simpleMarkdownToHtml} from "@/util/markdown-parser";
 import {siteConfig} from "@/util/site-config";
 import type {Certification} from "@/util/certification";
 
+function splitSkills(value: string): string[] {
+  const parts: string[] = [];
+  let depth = 0;
+  let current = "";
+
+  for (const char of value) {
+    if (char === "(") depth++;
+    else if (char === ")") depth = Math.max(0, depth - 1);
+
+    if (char === "," && depth === 0) {
+      parts.push(current.trim());
+      current = "";
+    } else {
+      current += char;
+    }
+  }
+
+  const last = current.trim();
+  if (last) parts.push(last);
+
+  return parts.filter(Boolean);
+}
+
 interface SkillsClientWrapperProps {
   certificationsByLocale: Record<string, Certification[]>;
 }
@@ -140,14 +163,16 @@ export const SkillsClientWrapper: React.FC<SkillsClientWrapperProps> = ({
                   </h3>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {skill.details.map((detail) => (
-                    <span
-                      key={detail}
-                      className="text-xs px-3 py-1.5 rounded-full bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-800/60 dark:text-zinc-300 dark:border-zinc-700/60"
-                    >
-                      {detail}
-                    </span>
-                  ))}
+                  {skill.details
+                    .flatMap((detail) => splitSkills(detail))
+                    .map((item) => (
+                      <span
+                        key={item}
+                        className="text-xs px-3 py-1.5 rounded-full bg-zinc-100 text-zinc-700 border border-zinc-200 dark:bg-zinc-800/60 dark:text-zinc-300 dark:border-zinc-700/60"
+                      >
+                        {item}
+                      </span>
+                    ))}
                 </div>
               </div>
             </Card>
