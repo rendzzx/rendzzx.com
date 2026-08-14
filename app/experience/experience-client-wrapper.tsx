@@ -35,26 +35,10 @@ export const ExperienceClientWrapper: React.FC<ExperienceClientWrapperProps> = (
 
   return (
     <>
-      <div className="w-full max-w-4xl relative">
-        {/* Timeline line */}
-        <div
-          className="absolute left-5 md:left-6 top-0 bottom-0 w-px bg-zinc-300 dark:bg-zinc-800"
-          aria-hidden="true"
-        />
-
-        <div className="space-y-10">
+      <div className="w-full max-w-4xl">
+        <div className="space-y-6">
           {experiences.map((exp) => (
-            <div key={exp.slug} className="relative pl-12 md:pl-16">
-              {/* Timeline dot */}
-              <span
-                className={`absolute left-5 md:left-6 -translate-x-1/2 top-8 w-3.5 h-3.5 rounded-full border-2 ${
-                  exp.current
-                    ? "bg-orange-500 border-orange-500"
-                    : "bg-white dark:bg-zinc-900 border-zinc-400 dark:border-zinc-600"
-                }`}
-                aria-hidden="true"
-              />
-
+            <div key={exp.slug}>
               <Card>
                 <Link href={`/experience/${exp.slug}`} className="block">
                   <article className="p-6 md:p-8 flex flex-col md:flex-row gap-6">
