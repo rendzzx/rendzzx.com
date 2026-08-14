@@ -163,7 +163,7 @@ export const ExperienceClientWrapper: React.FC<ExperienceClientWrapperProps> = (
                       <div className="flex items-center justify-end gap-2">
                         <Calendar className="w-4 h-4" />
                         <span>
-                          {edu.startDate} — {edu.endDate}
+                          {[edu.startDate, edu.endDate].filter(Boolean).join(' — ')}
                         </span>
                       </div>
                       {edu.gpa && <div>GPA {edu.gpa}</div>}
